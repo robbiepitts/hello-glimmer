@@ -27,13 +27,14 @@ module.exports = function(environment) {
         application: { definitiveCollection: 'main' },
         component: { definitiveCollection: 'components' },
         renderer: { definitiveCollection: 'main' },
+        runner: { definitiveCollection: 'main' },
         service: { definitiveCollection: 'services' },
         template: { definitiveCollection: 'routes' },
         util: { definitiveCollection: 'utils' }
       },
       collections: {
         main: {
-          types: ['application', 'renderer']
+          types: ['application', 'renderer', 'runner']
         },
         components: {
           group: 'ui',

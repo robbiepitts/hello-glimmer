@@ -1,5 +1,11 @@
 import Application from '@glimmer/application';
-import Resolver, { ResolverConfiguration, BasicModuleRegistry } from '@glimmer/resolver';
+import Resolver, {
+  ResolverConfiguration,
+  BasicModuleRegistry
+} from '@glimmer/resolver';
+import {
+  RegistryAccessor
+} from '@glimmer/di';
 import config from './config/environment';
 import moduleMap from './config/module-map';
 
@@ -21,5 +27,15 @@ export default class App extends Application {
       rootName: config.modulePrefix,
       resolver
     });
+  }
+
+  initialize(registry: RegistryAccessor) {
+    super.initialize(registry);
+
+    registry.register(`application:/${this.rootName}/main/main`, this, {
+      instantiate: false
+    });
+    registry.registerInjection('runner', 'app', `application:/${this.rootName}/main/main`);
+    registry.registerInjection('component', 'runner', `runner:/${this.rootName}/main/main`);
   }
 }
