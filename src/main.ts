@@ -12,7 +12,7 @@ const resolverConfiguration: ResolverConfiguration = {
 console.log('resolverConfiguration', resolverConfiguration);
 console.log('moduleMap', moduleMap);
 
-export default class App extends Application {
+export class App extends Application {
   constructor() {
     let moduleRegistry = new BasicModuleRegistry(moduleMap);
     let resolver = new Resolver(resolverConfiguration, moduleRegistry);
@@ -23,3 +23,5 @@ export default class App extends Application {
     });
   }
 }
+
+export default new App();
